@@ -1,0 +1,26 @@
+<ul class="list-group mb-4">
+  <li *ngFor="let item of basketService.getBasket()" class="list-group-item d-flex justify-content-between align-items-center">
+    <div><span class="badge badge-info badge-pill mr-2">{{ item.quantity }}</span>{{ item.grocery.name }} <small>£{{ item.grocery.costPerUnit | number:"1.2-2" }} per {{ item.grocery.unit }}</small></div>
+    <div>£{{ item.cost | number:"1.2-2"}}</div>
+  </li>
+</ul>
+
+<div *ngIf="basketService.getBasketSize() < 1" class="alert alert-info">
+  Your basket is empty. Why not add some <a routerLink="/groceries">groceries</a>?
+</div>
+
+<ul class="list-group mb-4">
+  <li  class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center">
+    <strong>Total</strong>
+    <div><small>{{ selectedCurrency }}</small> {{ getConvertedBasketTotal() | number:"1.2-2" }}</div>
+  </li>
+</ul>
+
+<div *ngIf="!loading" class="row justify-content-end">
+  <div class="col-auto form-inline">
+    <label class="mr-2" for="currency">Select your currency</label>
+    <select class="form-control" name="currency" [(ngModel)]="selectedCurrency" value="selectedCurrency">
+      <option *ngFor="let currency of currencies">{{ currency }}</option>
+    </select>
+  </div>
+</div>

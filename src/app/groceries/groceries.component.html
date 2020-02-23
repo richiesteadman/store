@@ -1,0 +1,19 @@
+<div class="row">
+  
+  <div *ngFor="let grocery of groceries" class="col-12 col-sm-6 col-md-3 mb-4">
+    <div class="card">
+      <img class="card-img-top" src="{{ grocery.image }}" alt="{{ grocery.name }} image">
+      <div class="card-body">
+        <h5 class="card-title">{{ grocery.name }}</h5>
+        <p class="card-text">£{{ grocery.costPerUnit | number:"1.2-2" }} per {{ grocery.unit }}</p>
+        <button type="button" class="btn btn-primary" (click)="addToBasket(grocery)">Add to basket</button>
+        <span *ngIf="basketService.getBasketItemQuantity(grocery) !== 0" class="ml-2">{{ basketService.getBasketItemQuantity(grocery) }} in basket</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!groceries || (groceries.length < 1)" class="col">
+    <p>No groceries to display</p>
+  </div>
+
+</div>
