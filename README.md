@@ -1,4 +1,4 @@
-# BJSS CODING ASSIGNMENT
+# CODING ASSIGNMENT
 
 Write an application and associated unit tests that can price a basket of goods in several currencies. The goods that can be purchased, which are all priced in GBP, are:
 
